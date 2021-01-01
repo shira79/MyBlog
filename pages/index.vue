@@ -1,6 +1,5 @@
 <template>
   <v-container class = "top">
-    <Loading :state="loading"></Loading>
     <div class="text">
       <v-col class = "greeting">{{greeting}}</v-col>
     <v-col class = "message">{{message}}</v-col>
@@ -14,32 +13,20 @@ import Loading from '../components/Loading.vue'
 
 export default {
   name: 'Top',
-  components:{ Loading },
-  data: function(){
-    return {
-      greeting: null,
-      message: null,
-    }
-  },
-  created :function(){
-    this.setData();
-  },
-  methods:{
-    setData(){
-      var vm = this;
-      vm.loading = true;
-      ContentfulAdapter.getTop()
-        .then(function (entry) {
-          vm.greeting = entry.fields.title;
-          vm.message = entry.fields.description;
-          vm.loading = false;
-        })
-        .catch(function(){
-          alert("挨拶文が取得できませんでした");
-        })
-    }
+  asyncData () {
+    return ContentfulAdapter.getTop()
+      .then(entry => {
+        return {
+          greeting : entry.fields.title,
+          message : entry.fields.description
+        }
+      })
+      .catch(function(){
+        alert("挨拶文が取得できませんでした");
+      })
   }
 }
+
 </script>
 
 <style>
