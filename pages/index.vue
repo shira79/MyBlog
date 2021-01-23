@@ -9,7 +9,6 @@
 
 <script>
 import ContentfulAdapter from '../plugins/contentful.js'
-import Loading from '../components/Loading.vue'
 
 export default {
   name: 'Top',
@@ -50,7 +49,7 @@ export default {
 .greeting {
   font-size: 60px;
   font-weight: bold;
-  color:#c1c1ff;
+  color:#42B2C1;
 }
 
 .message {

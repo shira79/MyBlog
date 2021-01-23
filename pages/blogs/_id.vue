@@ -1,12 +1,12 @@
 <template>
   <v-container class="blog-show">
-      <Loading :state="loading"></Loading>
-      <v-layout column v-if="!loading">
-        <h2>{{title}}</h2>
+      <v-layout column>
+        <h1>{{title}}</h1>
         <Tags :tags="tags"></Tags>
         <PublishedAt :publishedAt="publishedAt"></PublishedAt>
-        <v-col class="markdown markdown-body" v-html=text></v-col>
+        <v-col class="markdown markdown-body" v-html= "text"></v-col>
       </v-layout>
+      <Socials :links="links"></Socials>
   </v-container>
 </template>
 
@@ -15,42 +15,14 @@
 import ContentfulAdapter from '../../plugins/contentful.js'
 import marked from 'marked'
 import hljs from 'highlight.js'
-import Loading from '../../components/Loading.vue'
 import Tags from '../../components/Tags.vue'
 import PublishedAt from '../../components/PublishedAt.vue'
+import Socials from '../../components/Socials.vue'
 
 export default {
-  components: { Loading, Tags, PublishedAt},
+  components: { Tags, PublishedAt, Socials},
   props:{ id: String },
-  data:function(){
-    return {
-      loading:false,
-      title:"",
-      text:"",
-      slug:"",
-      tags:"",
-      publishedAt:"",
-    }
-  },
-  methods:{
-    setData(){
-      var vm = this;
-      vm.loading =  true;
-      ContentfulAdapter.getEntryById(this.$route.params.id)
-        .then(function (entry) {
-          vm.title =  entry.fields.title;
-          vm.text =  marked(entry.fields.text);
-          vm.slug =  entry.fields.slug;
-          vm.publishedAt =  entry.fields.publishedAt;
-          vm.tags =  entry.fields.tags;
-          vm.loading =  false;
-        })
-        .catch(function(){
-          alert("記事が取得できませんでした");
-        })
-      }
-    },
-    created :function(){
+  async asyncData({params}){
       marked.setOptions({
         langPrefix: '',
         highlight: function(code, lang) {
@@ -58,21 +30,37 @@ export default {
         }
       });
 
-      this.setData();
-    },
-    watch: {
-      $route () {
-        this.setData();
+      const blog = await ContentfulAdapter.getEntryById(params.id)
+      .then(  entry => {
+          return entry;
+      }).catch(function(){
+          alert("記事が取得できませんでした");
+      });
+
+      const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
+      .then( entry => {
+            return entry;
+      }).catch(function(){
+          alert("ソーシャルリンクが取得できませんでした");
+      })
+
+      return {
+          title :  blog.fields.title,
+          text :  marked(blog.fields.text),
+          slug :  blog.fields.slug,
+          publishedAt :  blog.fields.publishedAt,
+          tags :  blog.fields.tags,
+          links : SocialLinksEntry.items,
       }
-    },
-  }
+  },
+}
   </script>
 
 <style scoped>
 
 .blog-show{
     text-align:left;
-    max-width:680px;
+    max-width:870px;
 }
 
 </style>

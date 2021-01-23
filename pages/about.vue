@@ -2,20 +2,12 @@
   <div>
     <v-container class="about" xs=10>
       <h1>ABOUT</h1>
-      <Loading :state="loading"></Loading>
-      <v-col>{{name}}</v-col>
+      <img height="160" width="160" src="/icon.gif">
+      <img height="160" width="160" src="/icon.gif">
+      <img height="160" width="160" src="/icon.gif">
+      <img height="160" width="160" src="/icon.gif">
       <v-col class="markdown-body" v-html=description></v-col>
-      <v-col
-        v-for="page in pages"
-        :key="page.fields.title"
-        class="markdown-body"
-        v-html="compileMarkdown(page.fields.body)"></v-col>
-        <v-layout>
-          <v-spacer></v-spacer>
-          <a v-for="link in links" :key=link.name :href="link.fields.url" target = "_blank" class="social-link mr-2">
-            <v-icon color="#c1c1ff">mdi-{{link.fields.fontAwesomeIcon}}</v-icon>
-          </a>
-        </v-layout>
+      <Socials :links=links></Socials>
     </v-container>
   </div>
 </template>
@@ -24,42 +16,33 @@
 
 import marked from 'marked'
 import ContentfulAdapter from '../plugins/contentful.js'
-import Loading from '../components/Loading.vue'
+import Socials from '../components/Socials.vue'
 
  export default {
-    components:{ Loading },
-    data:function(){
-      return {
-        loading:false,
-        name :"",
-        ronaName:"",
-        description:"",
-        links:[],
-        pages:[],
-      }
-    },
-    methods:{
-      setData(){
-        var vm = this;
-        vm.loading =  true;
-        ContentfulAdapter.getAboutMe()
-          .then(function (entry) {
-            vm.name        =  entry.fields.name;
-            vm.ronaName    =  entry.fields.romaName;
-            vm.description = vm.compileMarkdown(entry.fields.description);
-            vm.links       =  entry.fields.links;
-            vm.pages    =  entry.fields.pages;
-            vm.loading =  false;
-          })
-      },
-      compileMarkdown(text){
-            return marked(text)
+    components:{ Socials },
+    async asyncData(){
+        const aboutMeEntry = await ContentfulAdapter.getAboutMe()
+        .then(  entry => {
+            return entry;
+        }).catch(function(){
+            alert("aboutが取得できませんでした");
+        });
+
+        const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
+        .then( entry => {
+              return entry;
+        })
+        .catch(function(){
+            alert("ソーシャルリンクが取得できませんでした");
+        })
+
+        return {
+            name : aboutMeEntry.fields.name,
+            description : marked(aboutMeEntry.fields.description),
+            links : SocialLinksEntry.items,
         }
-    },
-    created :function(){
-      this.setData();
-    },
-  }
+    }
+}
 </script>
 
 <style scoped>
@@ -77,10 +60,6 @@ import Loading from '../components/Loading.vue'
   text-align:left;
   font-size: 20px;
   white-space: pre-wrap;
-}
-
-.social-link {
-  text-decoration: none;
 }
 
 @media screen and (max-width: 480px) {

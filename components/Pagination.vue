@@ -1,7 +1,7 @@
 <template>
     <v-pagination
             v-model="selected_page"
-            color="#c1c1ff"
+            color="#42B2C1"
             circle
             :length="length">
     </v-pagination>

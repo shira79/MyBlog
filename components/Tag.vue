@@ -26,7 +26,7 @@ export default {
       },
     },
     created :function(){
-        this.setData();
+        // this.setData();
     }
 }
 
@@ -44,7 +44,7 @@ export default {
 }
 
 .tag-link:hover {
-  color: #c1c1ff!important;
+  color: #42B2C1!important;
   text-decoration: underline;
 }
 

@@ -6,7 +6,6 @@
         <v-spacer></v-spacer>
         <v-tab to="/about">about</v-tab>
         <v-tab to="/blogs">blog</v-tab>
-        <v-tab to="/contact">contact</v-tab>
       </v-layout>
     </v-container>
     <nuxt/>
@@ -38,14 +37,13 @@
   min-height: 100vh;
 }
 
-.v-container {
-  max-width: 680px;
+.markdown-body code {
+  background-color: transparent !important;
 }
 
 .markdown-body {
   box-sizing: border-box;
   min-width: 200px;
-  max-width: 680px;
   margin: 0 auto;
   padding: 45px;
 }
@@ -62,7 +60,7 @@
 }
 
 .markdown-body a {
-  color: #c1c1ff!important;
+  color: #42B2C1!important;
 }
 
 </style>
