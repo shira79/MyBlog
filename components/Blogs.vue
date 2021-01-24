@@ -1,7 +1,7 @@
 <template>
     <v-layout column>
         <v-col class="blog-item" v-for="blog in blogs" :key="blog.title">
-            <h3><router-link class="blog-link" :to="`/blogs/${blog.sys.id}`">{{blog.fields.title}}</router-link></h3>
+            <h3><nuxt-link class="blog-link" :to="`/blogs/${blog.sys.id}`">{{blog.fields.title}}</nuxt-link></h3>
             <Tags :tags="blog.fields.tags"></Tags>
             <PublishedAt :publishedAt="blog.fields.publishedAt"></PublishedAt>
         </v-col>

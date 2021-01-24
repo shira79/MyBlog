@@ -1,8 +1,8 @@
 <template>
     <div class="tag">
-        <router-link class = "tag-link" :to="`/tags/${tag.fields.enName}`">
+        <nuxt-link class = "tag-link" :to="`/tags/${tag.fields.enName}`">
             #{{tag.fields.jaName}}<span v-if="showCount">({{count}})</span>
-        </router-link>
+        </nuxt-link>
     </div>
 </template>
 
@@ -25,9 +25,6 @@ export default {
           })
       },
     },
-    created :function(){
-        // this.setData();
-    }
 }
 
 </script>

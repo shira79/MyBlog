@@ -2,10 +2,10 @@
   <v-app>
     <v-container class="nav">
       <v-layout class="tabs">
-        <a href="/" class="tab">top</a>
+        <nuxt-link to="/" class="tab">top</nuxt-link>
         <v-spacer></v-spacer>
-        <a href="/about" class="tab">about</a>
-        <a href="/blogs" class="tab">blog</a>
+        <nuxt-link to="/about" class="tab">about</nuxt-link>
+        <nuxt-link to="/blogs" class="tab">blog</nuxt-link>
       </v-layout>
     </v-container>
     <nuxt/>
