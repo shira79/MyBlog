@@ -18,4 +18,9 @@ export default {
 .social-link {
     text-decoration: none;
 }
+
+.v-icon {
+    font-size: 24px
+}
+
 </style>

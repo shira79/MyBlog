@@ -31,12 +31,9 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
-
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/dotenv',
@@ -66,9 +63,9 @@ export default {
   },
 
   generate: {
+    fallback: true,
     routes() {
         return [];
     }
   },
-  //ここをブログとタグでやる。
 }

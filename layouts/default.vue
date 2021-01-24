@@ -2,10 +2,10 @@
   <v-app>
     <v-container class="nav">
       <v-layout class="tabs">
-        <v-tab to="/">Top</v-tab>
+        <a href="/" class="tab">topt</a>
         <v-spacer></v-spacer>
-        <v-tab to="/about">about</v-tab>
-        <v-tab to="/blogs">blog</v-tab>
+        <a href="/about" class="tab">about</a>
+        <a href="/blogs" class="tab">blog</a>
       </v-layout>
     </v-container>
     <nuxt/>
@@ -35,6 +35,32 @@
   text-align: center;
   color: #2c3e50;
   min-height: 100vh;
+}
+
+.tab {
+  color: #2c3e50!important;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex: 0 1 auto;
+  font-size: 0.875rem;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.0892857143em;
+  line-height: normal;
+  min-width: 90px;
+  max-width: 360px;
+  outline: none;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .markdown-body code {

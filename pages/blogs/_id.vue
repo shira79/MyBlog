@@ -30,7 +30,7 @@ export default {
         }
       });
 
-      const blog = await ContentfulAdapter.getEntryById(params.id)
+      const BlogEntry = await ContentfulAdapter.getEntryById(params.id)
       .then(  entry => {
           return entry;
       }).catch(function(){
@@ -45,11 +45,11 @@ export default {
       })
 
       return {
-          title :  blog.fields.title,
-          text :  marked(blog.fields.text),
-          slug :  blog.fields.slug,
-          publishedAt :  blog.fields.publishedAt,
-          tags :  blog.fields.tags,
+          title :  BlogEntry.fields.title,
+          text :  marked(BlogEntry.fields.text),
+          slug :  BlogEntry.fields.slug,
+          publishedAt :  BlogEntry.fields.publishedAt,
+          tags :  BlogEntry.fields.tags,
           links : SocialLinksEntry.items,
       }
   },

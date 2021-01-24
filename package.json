@@ -1,27 +1,26 @@
 {
-  "name": "nuxtSample",
+  "name": "shlia34",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "start-static": "http-server ./dist"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/vuetify": "^1.11.3",
     "core-js": "^3.6.5",
     "highlight.js": "^10.5.0",
     "marked": "^1.2.7",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.14.6",
-    "@nuxt/typescript-build": "^2.0.3",
-    "@nuxtjs/vuetify": "^1.11.2",
     "contentful": "^8.1.6",
     "contentful-cli": "^1.5.1",
-    "github-markdown-css": "^4.0.0"
+    "github-markdown-css": "^4.0.0",
+    "http-server": "^0.12.3"
   }
 }
