@@ -2,7 +2,7 @@
   <v-app>
     <v-container class="nav">
       <v-layout class="tabs">
-        <a href="/" class="tab">topt</a>
+        <a href="/" class="tab">top</a>
         <v-spacer></v-spacer>
         <a href="/about" class="tab">about</a>
         <a href="/blogs" class="tab">blog</a>

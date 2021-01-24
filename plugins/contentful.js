@@ -5,8 +5,8 @@ class ContentfulAdapter {
     this.limitNum =  4;
 
     this.client = createClient({
-      space: process.env.VUE_APP_TF_SPACE_ID,
-      accessToken: process.env.VUE_APP_CTF_ACCESS_TOKEN
+      space: process.env.NUXT_ENV_CTF_SPACE_ID,
+      accessToken: process.env.NUXT_ENV_CTF_ACCESS_TOKEN
     });
   }
 
