@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import ContentfulAdapter from './plugins/contentful.js'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -66,8 +67,36 @@ export default {
 
   generate: {
     fallback: true,
-    routes() {
-        return [];
+    async routes() {
+
+        var ret = [];
+
+        //tags/_enName/_page
+        let tagRoutes = await ContentfulAdapter.getTagList()
+        .then( entry =>  {
+            entry.items.map(function(tag){
+                ContentfulAdapter.getBlogByTagId(tag.sys.id)
+                .then( entry => {
+                    let pages = ContentfulAdapter.getLastPage(entry.total);
+                    [...Array(pages).keys()].map(function(page) {
+                        ret.push( `/tags/${tag.fields.enName}/${page+1}`);
+                    })
+                })
+            })
+        })
+
+        //blogs/list/_page
+        let blogRoutes =  await ContentfulAdapter.getBlogList()
+        .then( entry => {
+            let pages = ContentfulAdapter.getLastPage(entry.total);
+            [...Array(pages).keys()].map(function(page) {
+                ret.push(`/blogs/list/${page+1}`);
+            })
+        })
+
+        return Promise.all([tagRoutes, blogRoutes]).then(values => {
+            return ret;
+        })
     }
   },
 }

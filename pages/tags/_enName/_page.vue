@@ -3,25 +3,25 @@
       <div>
         <h2>#{{tag.fields.jaName}}</h2>
         <Blogs :blogs="bloglist"></Blogs>
-        <!-- <Pagination :current_page=page :last_page=last_page></Pagination> -->
+        <Pagination :current_page=page :last_page=last_page :base_path="`/tags/${tag.fields.enName}`"></Pagination>
       </div>
       <h3>全部のタグ</h3>
       <Tags :tags="tagList"></Tags>
-      <!-- <Tags :tags="tagList" :showCount="true"></Tags> -->
   </v-container>
 </template>
 
 <script>
 
-import ContentfulAdapter from '../../plugins/contentful.js'
-import Blogs from '../../components/Blogs.vue'
-import Tags from '../../components/Tags.vue'
-import Pagination from '../../components/Pagination.vue'
+import ContentfulAdapter from '../../../plugins/contentful.js'
+import Blogs from '../../../components/Blogs.vue'
+import Tags from '../../../components/Tags.vue'
+import Pagination from '../../../components/Pagination.vue'
 
 export default {
     components: { Blogs, Tags, Pagination},
     props:{ enName: String },
     async asyncData({params}){
+        const page = Number(params.page) || 1;
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
         .then( entry => {
             return entry;
@@ -29,7 +29,7 @@ export default {
             alert("タグが取得できませんでした");
         })
 
-        const BlogEntry = await ContentfulAdapter.getBlogByTagId(TagEntry.items[0].sys.id)
+        const BlogEntry = await ContentfulAdapter.getBlogByTagId(TagEntry.items[0].sys.id ,page)
         .then( entry => {
             return entry;
         }).catch(function(){
@@ -44,6 +44,8 @@ export default {
         })
 
         return {
+            page : page,
+            last_page : ContentfulAdapter.getLastPage(BlogEntry.total),
             tagList :  TagList,
             tag : TagEntry.items[0],
             bloglist : BlogEntry.items,

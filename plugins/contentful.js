@@ -2,7 +2,7 @@ import { createClient } from "contentful";
 
 class ContentfulAdapter {
   constructor() {
-    this.limitNum =  4;
+    this.limitNum = 4;
 
     this.client = createClient({
       space: process.env.NUXT_ENV_CTF_SPACE_ID,
@@ -24,12 +24,12 @@ class ContentfulAdapter {
     })
   }
 
-  getBlogList(){
+  getBlogList(page=1){
     return this.client.getEntries({
       'content_type': 'blog',
       'order': '-fields.publishedAt',
-      // limit: this.limitNum,
-      // skip: (page -1) * this.limitNum,
+      limit: this.limitNum,
+      skip: (page -1) * this.limitNum,
     })
   }
 
@@ -46,13 +46,13 @@ class ContentfulAdapter {
     })
   }
 
-  getBlogByTagId(id){
+  getBlogByTagId(id, page=1){
     return this.client.getEntries({
       content_type: "blog",
       "fields.tags.sys.id": id,
       'order': '-fields.publishedAt',
-      // limit: this.limitNum,
-      // skip: (page -1) * this.limitNum,
+      limit: this.limitNum,
+      skip: (page -1) * this.limitNum,
     })
   }
 
@@ -67,12 +67,12 @@ class ContentfulAdapter {
     return this.client.getEntry(id);
   }
 
-//   getLastPage(total){
-//     if( (total % this.limitNum) === 0){
-//       return Math.floor(total / this.limitNum)
-//     }
-//     return Math.floor(total / this.limitNum) + 1
-//  }
+  getLastPage(total){
+    if( (total % this.limitNum) === 0){
+      return Math.floor(total / this.limitNum)
+    }
+    return Math.floor(total / this.limitNum) + 1
+ }
 
 }
 

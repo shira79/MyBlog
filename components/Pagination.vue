@@ -18,6 +18,10 @@
                 type: Number,
                 required: true
             },
+            base_path: {
+                type: String,
+                required: true
+            },
         },
         data:function(){
             return {
@@ -27,7 +31,7 @@
         },
         watch: {
             selected_page: function(new_page) {
-                this.$router.push({ path: '', query: { page: new_page } })
+                this.$router.push({ path: `${this.base_path}/${new_page}` })
             }
         },
     }
