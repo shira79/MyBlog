@@ -40,7 +40,31 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit'
   ],
+
+  markdownit: {
+    breaks: true,
+    langPrefix: '',
+    use: [
+        ['markdown-it-table-of-contents', {
+            includeLevel: [2, 3],
+        }],
+        ['markdown-it-anchor'],
+    ],
+    highlight: (str, lang) => {
+        const hljs = require('highlight.js');
+
+        let ret;
+        try {
+            ret = '<pre class="hljs"><code>' + hljs.highlight(lang, str).value + '</code></pre>';
+        }
+        catch (e) {
+            ret = '<pre class="hljs"><code>' + hljs.highlight('plaintext', str).value + '</code></pre>'
+        }
+        return ret;
+      },
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {

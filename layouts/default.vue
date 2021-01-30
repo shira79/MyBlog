@@ -2,10 +2,10 @@
   <v-app>
     <v-container class="nav">
       <v-layout class="tabs">
-        <nuxt-link to="/" class="tab">top</nuxt-link>
+        <nuxt-link to="/" class="tab">🏠 home</nuxt-link>
         <v-spacer></v-spacer>
-        <nuxt-link to="/about" class="tab">about</nuxt-link>
-        <nuxt-link to="/blogs/list" class="tab">blog</nuxt-link>
+        <nuxt-link to="/about" class="tab">🌞 about</nuxt-link>
+        <nuxt-link to="/blogs/list" class="tab">📝 blog</nuxt-link>
       </v-layout>
     </v-container>
     <nuxt/>
@@ -86,6 +86,54 @@
 
 .markdown-body a {
   color: #42B2C1!important;
+}
+
+.table-of-contents {
+    background: #f6f6f6;
+    clear: both;
+    padding:20px 0 20px;
+    overflow: scroll;
+}
+.table-of-contents ul {
+    padding:0 20px;
+    list-style-type: none;
+}
+.table-of-contents a {
+    color:#333!important;
+}
+.table-of-contents a:hover {
+    color: #757C84!important;
+}
+.table-of-contents h2 {
+    margin:0;
+    padding:10px 0;
+}
+
+@media screen and (min-width: 1323px) and (orientation: landscape)  {
+    .table-of-contents {
+        position: fixed;
+        top: 150px;
+        left: 1123px;
+        width:340px;
+        font-size: 0.75em;
+        background: inherit;
+        padding:0;
+        white-space:nowrap;
+        overflow: scroll;
+        height: 100%;
+    }
+    .table-of-contents h2 {
+        background: inherit;
+        text-align: inherit;
+        border-bottom: 1px #eee solid;
+        padding:10px;
+    }
+    .table-of-contents ul {
+        padding:0 10px;
+    }
+    .table-of-contents li {
+        padding:0 10px;
+    }
 }
 
 </style>

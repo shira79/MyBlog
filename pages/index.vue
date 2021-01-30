@@ -1,5 +1,5 @@
 <template>
-  <v-container class = "top">
+  <v-container class = "home">
     <div class="text">
       <v-col class = "greeting">{{greeting}}</v-col>
     <v-col class = "message">{{message}}</v-col>
@@ -11,7 +11,7 @@
 import ContentfulAdapter from '../plugins/contentful.js'
 
 export default {
-  name: 'Top',
+  name: 'home',
   asyncData () {
     return ContentfulAdapter.getTop()
       .then(entry => {
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style>
-.top {
+.home {
   min-height: calc(100vh - 80px);
   text-align: center;
   position: relative;

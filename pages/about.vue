@@ -6,7 +6,7 @@
       <img height="160" width="160" src="/icon.gif">
       <img height="160" width="160" src="/icon.gif">
       <img height="160" width="160" src="/icon.gif">
-      <v-col class="markdown-body" v-html=description></v-col>
+      <v-col class="markdown-body" v-html=$md.render(aboutMe.fields.description)></v-col>
       <Socials :links=links></Socials>
     </v-container>
   </div>
@@ -14,7 +14,6 @@
 
 <script>
 
-import marked from 'marked'
 import ContentfulAdapter from '../plugins/contentful.js'
 import Socials from '../components/Socials.vue'
 
@@ -37,8 +36,7 @@ import Socials from '../components/Socials.vue'
         })
 
         return {
-            name : aboutMeEntry.fields.name,
-            description : marked(aboutMeEntry.fields.description),
+            aboutMe :aboutMeEntry,
             links : SocialLinksEntry.items,
         }
     }

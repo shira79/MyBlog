@@ -11,15 +11,17 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/vuetify": "^1.11.3",
     "core-js": "^3.6.5",
     "highlight.js": "^10.5.0",
-    "marked": "^1.2.7",
+    "markdown-it-anchor": "^7.0.1",
+    "markdown-it-highlightjs": "^3.4.0",
+    "markdown-it-table-of-contents": "^0.5.2",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
     "contentful": "^8.1.6",
-    "contentful-cli": "^1.5.1",
     "github-markdown-css": "^4.0.0",
     "http-server": "^0.12.3"
   }
