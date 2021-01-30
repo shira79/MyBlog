@@ -35,7 +35,8 @@ class ContentfulAdapter {
 
   getTagList(){
     return this.client.getEntries({
-      'content_type': 'tag'
+      'content_type': 'tag',
+      'order': 'sys.createdAt',
     })
   }
 
@@ -46,8 +47,8 @@ class ContentfulAdapter {
     })
   }
 
-  getBlogByTagId(id, page=1){
-    return this.client.getEntries({
+  async getBlogByTagId(id, page=1){
+    return await this.client.getEntries({
       content_type: "blog",
       "fields.tags.sys.id": id,
       'order': '-fields.publishedAt',
@@ -56,12 +57,12 @@ class ContentfulAdapter {
     })
   }
 
-  // getBlogCountByTagId(id){
-  //   return this.client.getEntries({
-  //     content_type: "blog",
-  //     "fields.tags.sys.id": id,
-  //   })
-  // }
+  getBlogCountByTagId(id){
+    return this.client.getEntries({
+      content_type: "blog",
+      "fields.tags.sys.id": id,
+    })
+  }
 
   getEntryById(id){
     return this.client.getEntry(id);
