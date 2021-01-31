@@ -45,7 +45,6 @@ export default {
 
   markdownit: {
     breaks: true,
-    langPrefix: '',
     use: [
         ['markdown-it-table-of-contents', {
             includeLevel: [2, 3],
