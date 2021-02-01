@@ -21,7 +21,7 @@ import seo from '../mixins/seo'
  export default {
     components:{ Socials },
     mixins: [seo],
-    async asyncData(){
+    async asyncData({route}){
         const aboutMeEntry = await ContentfulAdapter.getAboutMe()
         .then(  entry => {
             return entry;
@@ -40,6 +40,7 @@ import seo from '../mixins/seo'
         return {
             meta  :{
               title: 'About',
+              path :route.fullPath,
             },
             aboutMe :aboutMeEntry,
             links : SocialLinksEntry.items,

@@ -22,7 +22,7 @@ export default {
   components: { Tags, PublishedAt, Socials},
   props:{ id: String },
   mixins: [seo],
-  async asyncData({params}){
+  async asyncData({params,route}){
 
       const BlogEntry = await ContentfulAdapter.getEntryById(params.id)
       .then(  entry => {
@@ -42,6 +42,7 @@ export default {
           meta  :{
               title: BlogEntry.fields.title,
               description: BlogEntry.fields.text,
+              path :route.fullPath,
           },
           blog : BlogEntry,
           links : SocialLinksEntry.items,

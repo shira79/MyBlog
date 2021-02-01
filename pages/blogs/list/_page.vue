@@ -17,7 +17,7 @@ import seo from '../../../mixins/seo'
 export default {
     components:{  Blogs, Pagination },
     mixins: [seo],
-    async asyncData({params}){
+    async asyncData({params,route}){
         const page = Number(params.page) || 1
         const getBlogListEntry = await ContentfulAdapter.getBlogList(page)
         .then( entry => {
@@ -31,6 +31,7 @@ export default {
             meta  :{
               title: '記事一覧',
               description: '僕の記事の一覧なり〜〜〜',
+              path :route.fullPath,
             },
             page : page,
             items : getBlogListEntry.items,

@@ -22,7 +22,7 @@ export default {
     components: { Blogs, Tags, Pagination},
     props:{ enName: String },
     mixins: [seo],
-    async asyncData({params}){
+    async asyncData({params,route}){
 
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
         .then( entry => {
@@ -58,8 +58,9 @@ export default {
 
         return {
             meta  :{
-                title: '%23' + TagEntry.items[0].fields.jaName,
-                description: TagEntry.items[0] + 'タグの記事の一覧なり〜〜',
+                title: '#' + TagEntry.items[0].fields.jaName,
+                description: TagEntry.items[0].fields.jaName + 'タグの記事の一覧なり〜〜',
+                path :route.fullPath,
             },
             page : page,
             last_page : ContentfulAdapter.getLastPage(BlogEntry.total),
