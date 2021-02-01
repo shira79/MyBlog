@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: 'うぇぶでべろっぱー!!!! がんばるぞ!!!!' },
       { hid: 'og:url', name: 'og:url', content: 'https://shlia34.com/' },
       { hid: 'og:image', name: 'og:image', content: 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg' },
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
