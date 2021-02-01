@@ -16,9 +16,11 @@
 
 import ContentfulAdapter from '../plugins/contentful.js'
 import Socials from '../components/Socials.vue'
+import seo from '../mixins/seo'
 
  export default {
     components:{ Socials },
+    mixins: [seo],
     async asyncData(){
         const aboutMeEntry = await ContentfulAdapter.getAboutMe()
         .then(  entry => {
@@ -36,6 +38,9 @@ import Socials from '../components/Socials.vue'
         })
 
         return {
+            meta  :{
+              title: 'About',
+            },
             aboutMe :aboutMeEntry,
             links : SocialLinksEntry.items,
         }

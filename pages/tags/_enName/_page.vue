@@ -16,10 +16,12 @@ import ContentfulAdapter from '../../../plugins/contentful.js'
 import Blogs from '../../../components/Blogs.vue'
 import Tags from '../../../components/Tags.vue'
 import Pagination from '../../../components/Pagination.vue'
+import seo from '../../../mixins/seo'
 
 export default {
     components: { Blogs, Tags, Pagination},
     props:{ enName: String },
+    mixins: [seo],
     async asyncData({params}){
 
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
@@ -55,6 +57,10 @@ export default {
         })
 
         return {
+            meta  :{
+                title: '%23' + TagEntry.items[0].fields.jaName,
+                description: TagEntry.items[0] + 'タグの記事の一覧なり〜〜',
+            },
             page : page,
             last_page : ContentfulAdapter.getLastPage(BlogEntry.total),
             tagList : TagList,

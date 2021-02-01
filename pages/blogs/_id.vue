@@ -16,10 +16,12 @@ import ContentfulAdapter from '../../plugins/contentful.js'
 import Tags from '../../components/Tags.vue'
 import PublishedAt from '../../components/PublishedAt.vue'
 import Socials from '../../components/Socials.vue'
+import seo from '../../mixins/seo'
 
 export default {
   components: { Tags, PublishedAt, Socials},
   props:{ id: String },
+  mixins: [seo],
   async asyncData({params}){
 
       const BlogEntry = await ContentfulAdapter.getEntryById(params.id)
@@ -37,6 +39,10 @@ export default {
       })
 
       return {
+          meta  :{
+              title: BlogEntry.fields.title,
+              description: BlogEntry.fields.text,
+          },
           blog : BlogEntry,
           links : SocialLinksEntry.items,
       }

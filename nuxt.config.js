@@ -8,11 +8,14 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '',
-    title: 'shlia',
+    title: 'shlia34',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'うぇぶでべろっぱー!!!! がんばるぞ!!!!' },
+      { hid: 'og:url', name: 'og:url', content: 'https://shlia34.com/' },
+      { hid: 'og:image', name: 'og:image', content: 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg' },
+      { name: 'twitter:card', content: 'summary' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

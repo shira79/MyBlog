@@ -106,7 +106,7 @@
     .table-of-contents {
         position: fixed;
         top: 160px;
-        left: 1110px;
+        left: calc(100vw - 330px);
         width:330px;
         font-size: 0.75em;
         background: inherit;
