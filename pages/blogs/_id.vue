@@ -25,18 +25,7 @@ export default {
   async asyncData({params,route}){
 
       const BlogEntry = await ContentfulAdapter.getEntryById(params.id)
-      .then(  entry => {
-          return entry;
-      }).catch(function(){
-          alert("記事が取得できませんでした");
-      });
-
       const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
-      .then( entry => {
-            return entry;
-      }).catch(function(){
-          alert("ソーシャルリンクが取得できませんでした");
-      })
 
       return {
           meta  :{
@@ -56,6 +45,12 @@ export default {
 .blog-show{
     text-align:left;
     max-width:870px;
+}
+
+@media screen and (min-width: 1400px) and (orientation: landscape)  {
+    .blog-show{
+        margin-right: calc(100vw - 330px -770px);
+    }
 }
 
 </style>

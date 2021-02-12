@@ -16,6 +16,7 @@ export default {
       { hid: 'og:url', name: 'og:url', content: 'https://shlia34.com/' },
       { hid: 'og:image', name: 'og:image', content: 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@Twitter' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -97,30 +98,23 @@ export default {
 
         var ret = [];
 
-        //tags/_enName/_page
-        let tagRoutes = await ContentfulAdapter.getTagList()
-        .then( entry =>  {
-            entry.items.map(function(tag){
-                ContentfulAdapter.getBlogByTagId(tag.sys.id)
-                .then( entry => {
-                    let pages = ContentfulAdapter.getLastPage(entry.total);
-                    [...Array(pages).keys()].map(function(page) {
-                        ret.push( `/tags/${tag.fields.enName}/${page+1}`);
-                    })
-                })
+        const tagList = await ContentfulAdapter.getTagList();
+        let pushTagRoutes = tagList.items.map(async function(tag){
+            let blogs = await ContentfulAdapter.getBlogByTagId(tag.sys.id);
+            let pages = ContentfulAdapter.getLastPage(blogs.total);
+            let tags = [...Array(pages).keys()].map(function(page) {
+                ret.push( `/tags/${tag.fields.enName}/${page+1}`);
             })
+            Promise.all([tags])
         })
 
-        //blogs/list/_page
-        let blogRoutes =  await ContentfulAdapter.getBlogList()
-        .then( entry => {
-            let pages = ContentfulAdapter.getLastPage(entry.total);
-            [...Array(pages).keys()].map(function(page) {
-                ret.push(`/blogs/list/${page+1}`);
-            })
+        const BlogList = await ContentfulAdapter.getBlogList();
+        let pages = ContentfulAdapter.getLastPage(BlogList.total);
+        let pushBlogRoutes = [...Array(pages).keys()].map(function(page) {
+            ret.push(`/blogs/list/${page+1}`);
         })
 
-        return Promise.all([tagRoutes, blogRoutes]).then(values => {
+        return Promise.all([ pushTagRoutes, pushBlogRoutes ]).then(values => {
             return ret;
         })
     }

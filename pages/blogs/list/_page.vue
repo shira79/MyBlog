@@ -20,12 +20,6 @@ export default {
     async asyncData({params,route}){
         const page = Number(params.page) || 1
         const getBlogListEntry = await ContentfulAdapter.getBlogList(page)
-        .then( entry => {
-            return entry;
-        })
-        .catch(function(){
-            alert("記事一覧が取得できませんでした");
-        })
 
         return {
             meta  :{

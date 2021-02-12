@@ -22,20 +22,8 @@ import seo from '../mixins/seo'
     components:{ Socials },
     mixins: [seo],
     async asyncData({route}){
-        const aboutMeEntry = await ContentfulAdapter.getAboutMe()
-        .then(  entry => {
-            return entry;
-        }).catch(function(){
-            alert("aboutが取得できませんでした");
-        });
-
-        const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
-        .then( entry => {
-              return entry;
-        })
-        .catch(function(){
-            alert("ソーシャルリンクが取得できませんでした");
-        })
+        const aboutMeEntry = await ContentfulAdapter.getAboutMe();
+        const SocialLinksEntry = await ContentfulAdapter.getSocialLinks();
 
         return {
             meta  :{

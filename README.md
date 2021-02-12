@@ -1,20 +1,22 @@
-# nuxtSample
-
-## Build Setup
-
+## セットアップ
+###  うりゃ
 ```bash
-# install dependencies
 $ npm install
-
-# serve with hot reload at localhost:3000
 $ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### contentful設定
+.envを作成して、
+
+
+### SSG
+```bash
+# 静的サイト生成
+$ npm run generate
+
+# 生成した静的サイトを立ち上げる
+npm run start-static
+```
+
+### ブログの説明
+https://shlia34.com/blogs/1R9nVBx7e4FKLyOCgSirOo

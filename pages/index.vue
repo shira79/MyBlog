@@ -12,17 +12,13 @@ import ContentfulAdapter from '../plugins/contentful.js'
 
 export default {
   name: 'home',
-  asyncData () {
-    return ContentfulAdapter.getTop()
-      .then(entry => {
-        return {
-          greeting : entry.fields.title,
-          message : entry.fields.description
-        }
-      })
-      .catch(function(){
-        alert("挨拶文が取得できませんでした");
-      })
+  async asyncData () {
+    const TopEntry = await ContentfulAdapter.getTop()
+
+    return {
+        greeting : TopEntry.fields.title,
+        message : TopEntry.fields.description
+    }
   }
 }
 

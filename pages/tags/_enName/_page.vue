@@ -25,36 +25,16 @@ export default {
     async asyncData({params,route}){
 
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
-        .then( entry => {
-            return entry;
-        })
-        .catch(function(){
-            alert("タグが取得できませんでした");
-        })
 
         const page = Number(params.page) || 1;
         const BlogEntry =  await ContentfulAdapter.getBlogByTagId(TagEntry.items[0].sys.id ,page)
-       .then( entry => {
-            return entry;
-        })
-        .catch(function(){
-            alert("記事が取得できませんでした");
-        })
 
-        const TagList = await ContentfulAdapter.getTagList()
-        .then( entry =>  {
-            let list = entry.items.map(function(tag) {
-                return ContentfulAdapter.getBlogCountByTagId(tag.sys.id)
-                .then( entry => {
-                    tag.total = entry.total;
-                    return tag;
-                })
-            })
-            return Promise.all(list);
-        })
-        .catch(function(){
-            alert("タグ一覧が取得できませんでした");
-        })
+        const TagListEntry = await ContentfulAdapter.getTagList()
+        let TagList = await Promise.all( TagListEntry.items.map(async function(tag) {
+            let blogsEntries = await ContentfulAdapter.getBlogsByTagId(tag.sys.id);
+            tag.total = blogsEntries.total;
+            return tag;
+        }))
 
         return {
             meta  :{
