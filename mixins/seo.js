@@ -4,6 +4,7 @@ export default {
             title: this.meta.title + ' | shlia34',
             meta: [
                 { hid: 'description', name: 'description', content: this.clipDescription(this.meta.description) },
+                { hid: 'og:title', name: 'og:title', content: this.meta.title + ' | shlia34' },
                 { hid: 'og:url', name: 'og:url', content: 'https://shlia34.com' + this.meta.path },
                 { hid: 'og:image', name: 'og:image', content: this.getOgpImage(this.meta.title)  },
                 { hid: 'twitter:image', name: 'twitter:image',content: this.getOgpImage(this.meta.title)}

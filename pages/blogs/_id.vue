@@ -47,10 +47,4 @@ export default {
     max-width:870px;
 }
 
-@media screen and (min-width: 1400px) and (orientation: landscape)  {
-    .blog-show{
-        margin-right: calc(100vw - 330px -770px);
-    }
-}
-
 </style>
