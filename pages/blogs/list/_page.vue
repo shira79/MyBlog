@@ -19,7 +19,7 @@ export default {
     mixins: [seo],
     async asyncData({params,route}){
         const page = Number(params.page) || 1
-        const getBlogListEntry = await ContentfulAdapter.getBlogList(page)
+        const getBlogsEntry = await ContentfulAdapter.getPaginatedBlogs(page)
 
         return {
             meta  :{
@@ -28,8 +28,8 @@ export default {
               path :route.fullPath,
             },
             page : page,
-            items : getBlogListEntry.items,
-            last_page : ContentfulAdapter.getLastPage(getBlogListEntry.total),
+            items : getBlogsEntry.items,
+            last_page : ContentfulAdapter.getLastPage(getBlogsEntry.total),
         }
     },
   }

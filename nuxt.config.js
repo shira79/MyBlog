@@ -126,10 +126,10 @@ export default {
           }
       }))
 
-      const tagList = await ContentfulAdapter.getTagList();
+      const tagList = await ContentfulAdapter.getAllTags();
       //tag/_enName/_page
       await Promise.all(tagList.items.map(async function(tag){
-          let blogs = await ContentfulAdapter.getBlogByTagId(tag.sys.id);
+          let blogs = await ContentfulAdapter.getPaginatedBlogsByTagId(tag.sys.id);
           let tagLastPage = ContentfulAdapter.getLastPage(blogs.total);
           [...Array(tagLastPage).keys()].map(function(page) {
               if(page == 0){

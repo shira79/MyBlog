@@ -24,7 +24,7 @@ class ContentfulAdapter {
     })
   }
 
-  getBlogList(page=1){
+  getPaginatedBlogs(page=1){
     return this.client.getEntries({
       'content_type': 'blog',
       'order': '-fields.publishedAt',
@@ -40,7 +40,7 @@ class ContentfulAdapter {
     })
   }
 
-  getTagList(){
+  getAllTags(){
     return this.client.getEntries({
       'content_type': 'tag',
       'order': 'sys.createdAt',
@@ -54,7 +54,7 @@ class ContentfulAdapter {
     })
   }
 
-  getBlogByTagId(id, page=1){
+  getPaginatedBlogsByTagId(id, page=1){
     return this.client.getEntries({
       content_type: "blog",
       "fields.tags.sys.id": id,

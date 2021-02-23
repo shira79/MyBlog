@@ -27,9 +27,9 @@ export default {
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
 
         const page = Number(params.page) || 1;
-        const BlogEntry =  await ContentfulAdapter.getBlogByTagId(TagEntry.items[0].sys.id ,page)
+        const BlogEntry =  await ContentfulAdapter.getPaginatedBlogsByTagId(TagEntry.items[0].sys.id ,page)
 
-        const TagListEntry = await ContentfulAdapter.getTagList()
+        const TagListEntry = await ContentfulAdapter.getAllTags()
         let TagList = await Promise.all( TagListEntry.items.map(async function(tag) {
             let blogsEntries = await ContentfulAdapter.getBlogsByTagId(tag.sys.id);
             tag.total = blogsEntries.total;
