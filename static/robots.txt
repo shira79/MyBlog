@@ -1,0 +1,4 @@
+User-Agent:*
+Allow: /
+
+Sitemap:http://shlia34.com/sitemap.xml

@@ -45,7 +45,8 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/dotenv',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/sitemap'
   ],
 
   markdownit: {
@@ -93,6 +94,12 @@ export default {
   build: {
   },
 
+  sitemap: {
+    // options
+    hostname: 'http://shlia34.com',
+    path: '/sitemap.xml',
+  },
+
   generate: {
     fallback: true,
     async routes() {
@@ -107,7 +114,6 @@ export default {
       //blog/_id
       await Promise.all(allBlogs.items.map(function(blog) {
           ret.push(`/blogs/${blog.sys.id}`);
-          console.log(blog.sys.id)
       }))
 
       let blogLastPage = ContentfulAdapter.getLastPage(allBlogs.total);
@@ -134,7 +140,6 @@ export default {
           })
       }))
 
-      console.log(ret);
       return ret;
     }
   },

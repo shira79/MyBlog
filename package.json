@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/markdownit": "^2.0.0",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/vuetify": "^1.11.3",
     "core-js": "^3.6.5",
     "highlight.js": "^10.5.0",
