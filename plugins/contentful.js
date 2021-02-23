@@ -33,6 +33,13 @@ class ContentfulAdapter {
     })
   }
 
+  getAllBlogs(){
+    return this.client.getEntries({
+      'content_type': 'blog',
+      'order': '-fields.publishedAt',
+    })
+  }
+
   getTagList(){
     return this.client.getEntries({
       'content_type': 'tag',
@@ -47,8 +54,8 @@ class ContentfulAdapter {
     })
   }
 
-  async getBlogByTagId(id, page=1){
-    return await this.client.getEntries({
+  getBlogByTagId(id, page=1){
+    return this.client.getEntries({
       content_type: "blog",
       "fields.tags.sys.id": id,
       'order': '-fields.publishedAt',

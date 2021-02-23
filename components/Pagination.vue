@@ -31,6 +31,7 @@
         },
         watch: {
             selected_page: function(new_page) {
+                if(new_page == 1)new_page = "";
                 this.$router.push({ path: `${this.base_path}/${new_page}` })
             }
         },
