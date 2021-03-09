@@ -21,6 +21,9 @@ export default {
         const page = Number(params.page) || 1
         const getBlogsEntry = await ContentfulAdapter.getPaginatedBlogs(page)
 
+        if(getBlogsEntry.items.length == 0) return {}
+        //意図的にエラー出す
+
         return {
             meta  :{
               title: '記事一覧',

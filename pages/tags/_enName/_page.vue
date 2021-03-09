@@ -29,6 +29,9 @@ export default {
         const page = Number(params.page) || 1;
         const BlogEntry =  await ContentfulAdapter.getPaginatedBlogsByTagId(TagEntry.items[0].sys.id ,page)
 
+        if(BlogEntry.items.length == 0) return {}
+        //意図的にエラー出す
+
         const TagListEntry = await ContentfulAdapter.getAllTags()
         let TagList = await Promise.all( TagListEntry.items.map(async function(tag) {
             let blogsEntries = await ContentfulAdapter.getBlogsByTagId(tag.sys.id);
