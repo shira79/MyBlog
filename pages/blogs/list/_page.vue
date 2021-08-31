@@ -27,7 +27,7 @@ export default {
         return {
             meta  :{
               title: '記事一覧',
-              description: '僕の記事の一覧なり〜〜〜',
+              description: '記事の一覧',
               path :route.fullPath,
             },
             page : page,

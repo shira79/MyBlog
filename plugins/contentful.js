@@ -2,7 +2,7 @@ import { createClient } from "contentful";
 
 class ContentfulAdapter {
   constructor() {
-    this.limitNum = 4;
+    this.limitNum = 10;
 
     this.client = createClient({
       space: process.env.NUXT_ENV_CTF_SPACE_ID,

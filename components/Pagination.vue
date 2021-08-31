@@ -42,8 +42,11 @@
                 //pageが不正だったら空文字を返す。現在のパスを指定
                 if(page<1 || page>this.last_page) return "";
 
-                if(page == 1) page = "";
-                return `${this.base_path}/${page}`;
+                if(page == 1){
+                    return `${this.base_path}`;
+                } else {
+                    return `${this.base_path}/${page}`;
+                }
             },
         },
     }
