@@ -1,5 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 import ContentfulAdapter from './plugins/contentful.js'
+import MarkdownIt from 'markdown-it';
+
+const BaseUrl = 'https://shlia34.com'
+const MyName = 'shlia34'
+const BlogTitle = 'shlia34'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -8,13 +13,13 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '',
-    title: 'shlia34',
+    title: BlogTitle,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'うぇぶでべろっぱー!!!! がんばるぞ!!!!' },
-      { hid: 'og:title', name: 'og:title', content: 'shlia34' },
-      { hid: 'og:url', name: 'og:url', content: 'https://shlia34.com/' },
+      { hid: 'og:title', name: 'og:title', content: BlogTitle },
+      { hid: 'og:url', name: 'og:url', content: BaseUrl },
       { hid: 'og:image', name: 'og:image', content: 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@Twitter' }
@@ -44,7 +49,8 @@ export default {
   modules: [
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/feed',
   ],
 
   markdownit: {
@@ -107,14 +113,14 @@ export default {
       ret.push('/');
       ret.push(`/about`);
 
-      const allBlogs = await ContentfulAdapter.getAllBlogs()
+      const AllBlogs = await ContentfulAdapter.getAllBlogs()
 
       //blog/_id
-      await Promise.all(allBlogs.items.map(function(blog) {
+      await Promise.all(AllBlogs.items.map(function(blog) {
           ret.push(`/blogs/${blog.sys.id}`);
       }))
 
-      let blogLastPage = ContentfulAdapter.getLastPage(allBlogs.total);
+      let blogLastPage = ContentfulAdapter.getLastPage(AllBlogs.total);
        //blog/list/_page
       await Promise.all([...Array(blogLastPage).keys()].map(function(page) {
           if(page == 0){
@@ -124,9 +130,9 @@ export default {
           }
       }))
 
-      const tagList = await ContentfulAdapter.getAllTags();
+      const TagList = await ContentfulAdapter.getAllTags();
       //tag/_enName/_page
-      await Promise.all(tagList.items.map(async function(tag){
+      await Promise.all(TagList.items.map(async function(tag){
           let blogs = await ContentfulAdapter.getPaginatedBlogsByTagId(tag.sys.id);
           let tagLastPage = ContentfulAdapter.getLastPage(blogs.total);
           [...Array(tagLastPage).keys()].map(function(page) {
@@ -141,4 +147,45 @@ export default {
       return ret;
     }
   },
+
+  feed: [
+    {
+      path: '/feed.xml',
+      type: "rss2",
+      async create(feed) {
+        feed.options = {
+          title: BlogTitle,
+          link: BaseUrl + "/feed",
+          description: BlogTitle + "- feed"
+        };
+
+        const md = new MarkdownIt({
+          html: true,
+          typography: true,
+        })
+
+        // 記事を取得
+        const AllBlogs = await ContentfulAdapter.getAllBlogs()
+
+        AllBlogs.items.forEach(blog => {
+          feed.addItem({
+            title: blog.fields.title,
+            id: BaseUrl + `/blogs/${blog.sys.id}`,
+            link: BaseUrl + `/blogs/${blog.sys.id}`,
+            //TODO descriptionはあとで対応
+            // description: blog.fields.description,
+            content: md.render(blog.fields.text),
+            date: blog.fields.publishedAt ? new Date(blog.fields.publishedAt) : new Date(blog.sys.createdAt),
+            published: new Date(blog.fields.publishedAt),
+          });
+        });
+        feed.addCategory("blog");
+        feed.addContributor({
+          name: MyName,
+          link: BaseUrl
+        });
+
+      },
+    }
+  ],
 }
