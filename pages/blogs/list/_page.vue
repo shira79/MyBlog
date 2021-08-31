@@ -18,21 +18,21 @@ export default {
     components:{  Blogs, Pagination },
     mixins: [seo],
     async asyncData({params,route}){
-        const page = Number(params.page) || 1
-        const getBlogsEntry = await ContentfulAdapter.getPaginatedBlogs(page)
+        const Page = Number(params.page) || 1
+        const BlogsEntry = await ContentfulAdapter.getPaginatedBlogs(Page)
 
-        if(getBlogsEntry.items.length == 0) return {}
+        if(BlogsEntry.items.length == 0) return {}
         //意図的にエラー出す
 
         return {
-            meta  :{
-              title: '記事一覧',
-              description: '記事の一覧',
-              path :route.fullPath,
+            meta : {
+              title : '記事一覧',
+              description : '記事の一覧',
+              path : route.fullPath,
             },
-            page : page,
-            items : getBlogsEntry.items,
-            last_page : ContentfulAdapter.getLastPage(getBlogsEntry.total),
+            page : Page,
+            items : BlogsEntry.items,
+            last_page : ContentfulAdapter.getLastPage(BlogsEntry.total),
         }
     },
   }

@@ -28,10 +28,10 @@ export default {
       const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
 
       return {
-          meta  :{
-              title: BlogEntry.fields.title,
-              description: BlogEntry.fields.text,
-              path :route.fullPath,
+          meta : {
+              title : BlogEntry.fields.title,
+              description : BlogEntry.fields.text,
+              path : route.fullPath,
           },
           blog : BlogEntry,
           links : SocialLinksEntry.items,

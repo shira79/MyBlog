@@ -29,19 +29,19 @@
 
 #app {
   /* カラー変数 */
-  --theme: #42B2C1;
+  --theme: #6cb0b5;
   --sub: #7f8d8e;
 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
   min-height: 100vh;
 }
 
 .tab {
-  color: #2c3e50!important;
+  color: black!important;
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -84,7 +84,7 @@
 }
 
 .markdown-body code {
-  color: #24292E!important;
+  color: black!important;
   font-weight: lighter!important;
 }
 
@@ -124,4 +124,3 @@
 }
 
 </style>
-

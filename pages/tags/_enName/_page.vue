@@ -26,28 +26,28 @@ export default {
 
         const TagEntry = await ContentfulAdapter.getTagByEnName(params.enName)
 
-        const page = Number(params.page) || 1;
-        const BlogEntry =  await ContentfulAdapter.getPaginatedBlogsByTagId(TagEntry.items[0].sys.id ,page)
+        const Page = Number(params.page) || 1;
+        const BlogEntry =  await ContentfulAdapter.getPaginatedBlogsByTagId(TagEntry.items[0].sys.id ,Page)
 
         if(BlogEntry.items.length == 0) return {}
         //意図的にエラー出す
 
         const TagListEntry = await ContentfulAdapter.getAllTags()
-        let TagList = await Promise.all( TagListEntry.items.map(async function(tag) {
-            let blogsEntries = await ContentfulAdapter.getBlogsByTagId(tag.sys.id);
-            tag.total = blogsEntries.total;
+        let tagList = await Promise.all( TagListEntry.items.map(async function(tag) {
+            let blogsEntries = await ContentfulAdapter.getBlogsByTagId(tag.sys.id)
+            tag.total = blogsEntries.total
             return tag;
         }))
 
         return {
-            meta  :{
-                title: '#' + TagEntry.items[0].fields.jaName,
-                description: TagEntry.items[0].fields.jaName + 'タグの記事の一覧なり〜〜',
-                path :route.fullPath,
+            meta : {
+                title : '#' + TagEntry.items[0].fields.jaName,
+                description : TagEntry.items[0].fields.jaName + 'タグの記事の一覧なり〜〜',
+                path : route.fullPath,
             },
-            page : page,
+            page : Page,
             last_page : ContentfulAdapter.getLastPage(BlogEntry.total),
-            tagList : TagList,
+            tagList : tagList,
             tag : TagEntry.items[0],
             bloglist : BlogEntry.items,
         }

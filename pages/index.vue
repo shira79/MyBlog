@@ -1,23 +1,29 @@
 <template>
   <v-container class = "home">
     <div class="text">
-      <v-col class = "greeting">{{greeting}}</v-col>
-    <v-col class = "message">{{message}}</v-col>
+      <img height="160" src="/icon.png">
+      <!-- <v-col class = "greeting">{{greeting}}</v-col> -->
+      <v-col class = "message">{{message}}</v-col>
+      <Socials :links=links></Socials>
     </div>
   </v-container>
 </template>
 
 <script>
 import ContentfulAdapter from '../plugins/contentful.js'
+import Socials from '../components/Socials.vue'
 
 export default {
   name: 'home',
+  components:{ Socials },
   async asyncData () {
     const TopEntry = await ContentfulAdapter.getTop()
+    const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
 
     return {
         greeting : TopEntry.fields.title,
-        message : TopEntry.fields.description
+        message : TopEntry.fields.description,
+        links : SocialLinksEntry.items,
     }
   }
 }

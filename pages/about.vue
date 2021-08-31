@@ -22,15 +22,15 @@ import seo from '../mixins/seo'
     components:{ Socials },
     mixins: [seo],
     async asyncData({route}){
-        const aboutMeEntry = await ContentfulAdapter.getAboutMe();
-        const SocialLinksEntry = await ContentfulAdapter.getSocialLinks();
+        const AboutMeEntry = await ContentfulAdapter.getAboutMe()
+        const SocialLinksEntry = await ContentfulAdapter.getSocialLinks()
 
         return {
-            meta  :{
-              title: 'About',
-              path :route.fullPath,
+            meta : {
+              title : 'About',
+              path : route.fullPath,
             },
-            aboutMe :aboutMeEntry,
+            aboutMe : AboutMeEntry,
             links : SocialLinksEntry.items,
         }
     }
