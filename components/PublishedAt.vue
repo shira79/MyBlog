@@ -22,6 +22,6 @@ export default {
 
 <style>
 .publishedAt {
-  color: #7f8d8e;
+  color: var(--sub);
 }
 </style>

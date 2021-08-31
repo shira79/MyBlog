@@ -28,6 +28,10 @@
 @import "../node_modules/highlight.js/styles/github-gist.css";
 
 #app {
+  /* カラー変数 */
+  --theme: #42B2C1;
+  --sub: #7f8d8e;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -85,7 +89,7 @@
 }
 
 .markdown-body a {
-  color: #42B2C1!important;
+  color: var(--theme)!important;
 }
 
 .table-of-contents {
@@ -99,7 +103,7 @@
     color:#333!important;
 }
 .table-of-contents a:hover {
-    color: #42B2C1!important;
+    color: var(--theme)!important;
 }
 
 @media screen and (min-width: 1400px) and (orientation: landscape)  {

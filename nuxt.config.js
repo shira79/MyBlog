@@ -24,8 +24,6 @@ export default {
     ]
   },
 
-  loading: { color: "#42B2C1", },
-
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
   ],

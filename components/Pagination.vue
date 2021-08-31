@@ -86,7 +86,7 @@
     }
 
     .selected {
-        background-color: #42B2C1;
+        background-color: var(--theme);
         border-style: none;
         box-shadow: none;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 1px rgba(0, 0, 0, 0.19);

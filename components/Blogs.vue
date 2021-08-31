@@ -35,7 +35,7 @@ export default {
 }
 
 .blog-link:hover {
-  color: #42B2C1!important;
+  color: var(--theme)!important;
   text-decoration: underline;
 }
 </style>

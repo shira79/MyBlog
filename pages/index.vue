@@ -45,7 +45,7 @@ export default {
 .greeting {
   font-size: 60px;
   font-weight: bold;
-  color:#42B2C1;
+  color:var(--theme);
 }
 
 .message {

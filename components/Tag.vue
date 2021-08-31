@@ -21,12 +21,12 @@ export default {
 }
 
 .tag-link{
-  color:#7f8d8e!important;
+  color:var(--sub)!important;
   text-decoration: none;
 }
 
 .tag-link:hover {
-  color: #42B2C1!important;
+  color: var(--theme)!important;
   text-decoration: underline;
 }
 
