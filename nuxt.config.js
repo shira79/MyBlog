@@ -25,7 +25,8 @@ export default {
       { name: 'twitter:site', content: '@Twitter' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'alternate', type: 'application/rss+xml', href: '/feed.xml', title: 'RSS2.0 Feed' }
     ]
   },
 
