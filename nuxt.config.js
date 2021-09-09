@@ -2,9 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 import ContentfulAdapter from './plugins/contentful.js'
 import MarkdownIt from 'markdown-it';
 
-const BaseUrl = 'https://shlia34.com'
-const MyName = 'shlia34'
-const BlogTitle = 'shlia34'
+const BASE_URL      = 'https://shira79.dev'
+const MY_NAME       = 'shira79'
+const BLOG_TITLE    = 'shira79.dev'
+const OGP_IMAGE_TOP = 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -13,14 +14,14 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '',
-    title: BlogTitle,
+    title: BLOG_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'うぇぶでべろっぱー!!!! がんばるぞ!!!!' },
-      { hid: 'og:title', name: 'og:title', content: BlogTitle },
-      { hid: 'og:url', name: 'og:url', content: BaseUrl },
-      { hid: 'og:image', name: 'og:image', content: 'https://res.cloudinary.com/shlia34-com/image/upload/v1610548609/top_u28dey.jpg' },
+      { hid: 'description', name: 'description', content: "Hello, My Friend. I'm shira, a web developer." },
+      { hid: 'og:title', name: 'og:title', content: BLOG_TITLE },
+      { hid: 'og:url', name: 'og:url', content: BASE_URL },
+      { hid: 'og:image', name: 'og:image', content: OGP_IMAGE_TOP },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@Twitter' }
     ],
@@ -101,7 +102,7 @@ export default {
 
   sitemap: {
     // options
-    hostname: 'http://shlia34.com',
+    hostname: BASE_URL,
     path: '/sitemap.xml',
   },
 
@@ -155,9 +156,9 @@ export default {
       type: "rss2",
       async create(feed) {
         feed.options = {
-          title: BlogTitle,
-          link: BaseUrl + "/feed",
-          description: BlogTitle + "- feed"
+          title: BLOG_TITLE,
+          link: BASE_URL + "/feed",
+          description: BLOG_TITLE + "- feed"
         };
 
         const md = new MarkdownIt({
@@ -171,19 +172,19 @@ export default {
         AllBlogs.items.forEach(blog => {
           feed.addItem({
             title: blog.fields.title,
-            id: BaseUrl + `/blogs/${blog.sys.id}`,
-            link: BaseUrl + `/blogs/${blog.sys.id}`,
+            id: BASE_URL + `/blogs/${blog.sys.id}`,
+            link: BASE_URL + `/blogs/${blog.sys.id}`,
             //TODO descriptionはあとで対応
             // description: blog.fields.description,
-            content: md.render(blog.fields.text),
+            content: '<img src=' + '"https://res.cloudinary.com/shlia34-com/image/upload/l_text:Sawarabi%20Gothic_50_bold:' + encodeURIComponent(blog.fields.title) + ',w_450,c_fit/v1610548616/title_zm6zse.jpg'+ '">' + md.render(blog.fields.text),
             date: blog.fields.publishedAt ? new Date(blog.fields.publishedAt) : new Date(blog.sys.createdAt),
             published: new Date(blog.fields.publishedAt),
           });
         });
         feed.addCategory("blog");
         feed.addContributor({
-          name: MyName,
-          link: BaseUrl
+          name: MY_NAME,
+          link: BASE_URL
         });
 
       },

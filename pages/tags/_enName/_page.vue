@@ -42,7 +42,7 @@ export default {
         return {
             meta : {
                 title : '#' + TagEntry.items[0].fields.jaName,
-                description : TagEntry.items[0].fields.jaName + 'タグの記事の一覧なり〜〜',
+                description : TagEntry.items[0].fields.jaName + 'タグの記事の一覧',
                 path : route.fullPath,
             },
             page : Page,
