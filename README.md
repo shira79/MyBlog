@@ -3,6 +3,7 @@
 - Netlifyでホスティング
 - OGP画像
 - RSSフィード,サイトマップ
+- Google Analytics
 
 ## 説明
 [このブログをNuxtJSのSSGでリプレイス](https://shira79.dev/blogs/1r9nvbx7e4fklyocgsiroo)

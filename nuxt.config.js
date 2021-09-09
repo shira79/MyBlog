@@ -53,6 +53,7 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     '@nuxtjs/feed',
+    '@nuxtjs/google-analytics'
   ],
 
   markdownit: {
@@ -190,4 +191,7 @@ export default {
       },
     }
   ],
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+  },
 }
