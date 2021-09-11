@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 import ContentfulAdapter from './plugins/contentful.js'
 import MarkdownIt from 'markdown-it';
 
+const DOMAIN        = 'shira79.dev'
 const BASE_URL      = 'https://shira79.dev'
 const MY_NAME       = 'shira79'
 const BLOG_TITLE    = 'shira79.dev'
@@ -53,7 +54,7 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/sitemap',
     '@nuxtjs/feed',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-gtag'
   ],
 
   markdownit: {
@@ -191,7 +192,15 @@ export default {
       },
     }
   ],
-  googleAnalytics: {
+
+  'google-gtag': {
     id: process.env.GOOGLE_ANALYTICS_ID,
-  },
+    config: {
+      linker: {
+        //TODO shlia34.comはドメインの契約が終了したら外す
+        domains: [ DOMAIN, 'shlia34.com', 'shira-nuxt-static.netlify.app']
+      }
+    },
+    // debug: true,
+  }
 }
