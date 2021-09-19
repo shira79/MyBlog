@@ -103,53 +103,13 @@ export default {
   },
 
   sitemap: {
-    // options
     hostname: BASE_URL,
     path: '/sitemap.xml',
   },
 
   generate: {
     fallback: true,
-    async routes() {
-
-      var ret = [];
-
-      ret.push('/');
-      ret.push(`/about`);
-
-      const AllBlogs = await ContentfulAdapter.getAllBlogs()
-
-      //blog/_id
-      await Promise.all(AllBlogs.items.map(function(blog) {
-          ret.push(`/blogs/${blog.sys.id}`);
-      }))
-
-      let blogLastPage = ContentfulAdapter.getLastPage(AllBlogs.total);
-       //blog/list/_page
-      await Promise.all([...Array(blogLastPage).keys()].map(function(page) {
-          if(page == 0){
-              ret.push( `/blogs/list`);
-          }else{
-              ret.push(`/blogs/list/${page+1}`);
-          }
-      }))
-
-      const TagList = await ContentfulAdapter.getAllTags();
-      //tag/_enName/_page
-      await Promise.all(TagList.items.map(async function(tag){
-          let blogs = await ContentfulAdapter.getPaginatedBlogsByTagId(tag.sys.id);
-          let tagLastPage = ContentfulAdapter.getLastPage(blogs.total);
-          [...Array(tagLastPage).keys()].map(function(page) {
-              if(page == 0){
-                  ret.push( `/tags/${tag.fields.enName}`);
-              }else{
-                  ret.push( `/tags/${tag.fields.enName}/${page+1}`);
-              }
-          })
-      }))
-
-      return ret;
-    }
+    // パスは内部クローラーに任せる
   },
 
   feed: [
