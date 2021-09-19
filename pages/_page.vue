@@ -2,20 +2,20 @@
   <v-container class="blogindex">
     <div>
         <Blogs :blogs="items"></Blogs>
-        <Pagination :current_page=page :last_page=last_page base_path="/blogs/list"></Pagination>
+        <Pagination :last_page=last_page></Pagination>
     </div>
   </v-container>
 </template>
 
 <script>
 
-import ContentfulAdapter from '../../../plugins/contentful.js'
-import Blogs from '../../../components/Blogs.vue'
-import Pagination from '../../../components/Pagination.vue'
-import seo from '../../../mixins/seo'
+import ContentfulAdapter from '../plugins/contentful.js'
+import Blogs from '../components/Blogs.vue'
+import Pagination from '../components/Pagination.vue'
+import seo from '../mixins/seo'
 
 export default {
-    components:{  Blogs, Pagination },
+    components:{ Blogs, Pagination },
     mixins: [seo],
     async asyncData({params,route}){
         const Page = Number(params.page) || 1
