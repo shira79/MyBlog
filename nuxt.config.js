@@ -136,7 +136,6 @@ export default {
             title: blog.fields.title,
             id: BASE_URL + `/blogs/${blog.sys.id}`,
             link: BASE_URL + `/blogs/${blog.sys.id}`,
-            //TODO descriptionはあとで対応
             // description: blog.fields.description,
             content: '<img src=' + '"https://res.cloudinary.com/shlia34-com/image/upload/l_text:Sawarabi%20Gothic_50_bold:' + encodeURIComponent(blog.fields.title) + ',w_450,c_fit/v1610548616/title_zm6zse.jpg'+ '">' + md.render(blog.fields.text),
             date: blog.fields.publishedAt ? new Date(blog.fields.publishedAt) : new Date(blog.sys.createdAt),
@@ -157,8 +156,7 @@ export default {
     id: process.env.GOOGLE_ANALYTICS_ID,
     config: {
       linker: {
-        //TODO shlia34.comはドメインの契約が終了したら外す
-        domains: [ DOMAIN, 'shlia34.com', 'shira-nuxt-static.netlify.app']
+        domains: [ DOMAIN,  'shira-nuxt-static.netlify.app']
       }
     },
     // debug: true,

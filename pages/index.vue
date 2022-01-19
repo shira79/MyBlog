@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-container class="about" xs=10>
-      <h1>ABOUT</h1>
+    <v-container class="home" xs=10>
+      <h1>HOME</h1>
       <img height="160" width="160" src="/icon.gif">
       <img height="160" width="160" src="/icon.gif">
       <img height="160" width="160" src="/icon.gif">
@@ -27,7 +27,7 @@ import seo from '../mixins/seo'
 
         return {
             meta : {
-              title : 'About',
+              title : 'Home',
               path : route.fullPath,
             },
             aboutMe : AboutMeEntry,
@@ -39,23 +39,23 @@ import seo from '../mixins/seo'
 
 <style scoped>
 
-.about{
+.home{
   max-width:680px;
   text-align:left;
 }
 
-.about-image {
+.home-image {
   width:100%;
 }
 
-.about-text {
+.home-text {
   text-align:left;
   font-size: 20px;
   white-space: pre-wrap;
 }
 
 @media screen and (max-width: 480px) {
-  .about-image {
+  .home-image {
     width:100%;
   }
 }

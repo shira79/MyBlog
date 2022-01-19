@@ -4,7 +4,7 @@
       <v-layout class="tabs">
         <nuxt-link to="/" class="tab">home</nuxt-link>
         <v-spacer></v-spacer>
-        <nuxt-link to="/about" class="tab">about</nuxt-link>
+        <nuxt-link to="/page" class="tab">Blogs</nuxt-link>
         <nuxt-link to="/tags" class="tab">tags</nuxt-link>
       </v-layout>
     </v-container>

@@ -9,10 +9,10 @@
 
 <script>
 
-import ContentfulAdapter from '../plugins/contentful.js'
-import Blogs from '../components/Blogs.vue'
-import Pagination from '../components/Pagination.vue'
-import seo from '../mixins/seo'
+import ContentfulAdapter from '../../plugins/contentful.js'
+import Blogs from '../../components/Blogs.vue'
+import Pagination from '../../components/Pagination.vue'
+import seo from '../../mixins/seo'
 
 export default {
     components:{ Blogs, Pagination },
