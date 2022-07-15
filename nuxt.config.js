@@ -105,6 +105,28 @@ export default {
   sitemap: {
     hostname: BASE_URL,
     path: '/sitemap.xml',
+    exclude: [
+      // 実験用のページなので除外
+      '/query'
+    ],
+    routes: async () => {
+      var ret = []
+
+      // 記事詳細ページのURL
+      const AllBlogs = await ContentfulAdapter.getAllBlogs()
+      const blogurl = AllBlogs.items.map((blog) => `/blogs/${blog.sys.id}`)
+      ret = ret.concat(blogurl)
+
+      // タグ詳細ページのURL
+      const TagList = await ContentfulAdapter.getAllTags();
+      const tagurl = TagList.items.map((tag) => `/tags/${tag.fields.enName}`)
+      ret = ret.concat(tagurl)
+
+      // 記事一覧ページ
+      ret.push('page')
+
+      return ret
+    }
   },
 
   generate: {

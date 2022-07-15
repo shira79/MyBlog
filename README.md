@@ -12,5 +12,14 @@
 - [フロントエンド初心者がVueで作ったブログをNuxtのSSGで作り直した時につまずいたこと](https://zenn.dev/shlia/articles/a6c2fb22ab7c6e)
 
 ## コマンドのメモ
+- `npm install`      : クローン後
 - `npm run dev`      : 開発
 - `npm run generate` : 静的ファイル生成
+
+## 環境
+```
+$ node -v
+v12.11.1
+$ npm -v
+6.13.4
+```
